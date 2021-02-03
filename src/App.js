@@ -5,12 +5,14 @@ import axios from 'axios';
 import Navbar from './components/layout/Navbar';
 import PokemonList from './components/PokemonList';
 import TypeList from './components/TypeList';
+import PokemonDetails from "./components/PokemonDetails";
 
 
 class App extends Component{
 
   state = {
-    pokemons: []
+    pokemons: [],
+    types: []
   };
 
   componentDidMount() {
@@ -39,6 +41,11 @@ class App extends Component{
             <Route path="/types" render={(props) => (
               <React.Fragment>
                 <TypeList types={this.state.types} />
+              </React.Fragment>
+            )} />
+            <Route path="/pokemon" render={(props) => (
+              <React.Fragment>
+                <PokemonDetails />
               </React.Fragment>
             )} />
         </div>
