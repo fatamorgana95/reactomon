@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from 'axios';
 import Navbar from './components/layout/Navbar';
 import PokemonList from './components/PokemonList';
+import TypeList from './components/TypeList';
 
 
 class App extends Component{
@@ -15,6 +16,8 @@ class App extends Component{
   componentDidMount() {
     axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=100')
       .then((response) => this.setState({ pokemons: response.data.results }))
+    axios.get('https://pokeapi.co/api/v2/type')
+      .then((response) => this.setState({ types: response.data.results }))
   }
 
   
@@ -25,7 +28,7 @@ class App extends Component{
             <Navbar />
             <Route exact path="/" render={(props) => (
               <React.Fragment>
-                <p>main page</p>
+                <p>hell mami</p>
               </React.Fragment>
             )} />
             <Route path="/pokemons" render={(props) => (
@@ -33,7 +36,11 @@ class App extends Component{
                 <PokemonList pokemons={this.state.pokemons} />
               </React.Fragment>
             )} />
-            <Route path="/types"  />
+            <Route path="/types" render={(props) => (
+              <React.Fragment>
+                <TypeList types={this.state.types} />
+              </React.Fragment>
+            )} />
         </div>
       </Router>
     );
