@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Stats from './Stats'
 
 export class PokemonDetails extends Component {
     state = {
-        abilities: [],
         picture: "",
         name: "",
-        id: ""
+        id: "",
+        baseExperience: 0,
+        stats: []
+
     }
 
   componentDidMount() {
@@ -17,9 +20,10 @@ export class PokemonDetails extends Component {
 
     axios.get(link)
     .then(response => this.setState({
-        abilities: response.data.abilities,
         picture: response.data.sprites.other.dream_world.front_default,
-        name: response.data.forms[0].name
+        name: response.data.name,
+        baseExperience: response.data.base_experience,
+        stats: response.data.stats
       })
     );
   }
@@ -29,6 +33,8 @@ export class PokemonDetails extends Component {
     <div>
         <img src={this.state.picture} alt=""/>
         <p>{this.state.name}</p>
+        <p>experience: {this.state.baseExperience}</p>
+        <Stats stats={this.state.stats} id={this.state.id} />
     </div>
     
     );
