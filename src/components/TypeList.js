@@ -1,13 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class TypeList extends Component {
+
     render() {
         return (
-            <div>
-                <h1>Types</h1>
-            </div>
-        )
+            this.props.types.map(type => (
+                <li key={type.url}>{type.name}</li>
+        )))
     }
 }
 
-export default TypeList; 
+TypeList.propTypes = {
+    types: PropTypes.array.isRequired
+}
+
+export default TypeList;
