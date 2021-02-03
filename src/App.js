@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from 'axios';
 import Navbar from './components/layout/Navbar';
 import PokemonList from './components/PokemonList';
+import TypeList from './components/TypeList';
 
 
 class App extends Component{
@@ -33,7 +34,7 @@ class App extends Component{
                 <PokemonList pokemons={this.state.pokemons} />
               </React.Fragment>
             )} />
-            <Route path="/types"  />
+            <Route path="/types" component={TypeList} />
         </div>
       </Router>
     );
