@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export class Stats extends Component {
-    render() {
-    return (this.props.stats.map(stat => (
-        <p key={ this.props.id }>{stat.stat.name}: {stat.base_stat}</p>
+const Stats = (props) => {
+    return (props.stats.map(stat => (
+        <p key={ props.id }>{stat.stat.name}: {stat.base_stat}</p>
         )))
-}
 }
 
 export default Stats;
