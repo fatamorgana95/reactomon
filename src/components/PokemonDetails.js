@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useHttp } from "../hooks/Http";
 import Stats from "./Stats";
 
 const PokemonDetails = (props) => {
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [experience, setExperience] = useState(0);
-  const [stats, setStats] = useState([]);
   const { id } = useParams();
   const link = `https://pokeapi.co/api/v2/pokemon/${id}/`;
 
-  useEffect(() => {
-    axios
-      .get(link)
-      .then(
-        (response) =>
-          setImage(response.data.sprites.other.dream_world.front_default) +
-          setName(response.data.name) +
-          setExperience(response.data.base_experience) +
-          setStats(response.data.stats)
-      );
-  }, [link]);
+  const [isLoading, fetchedData] = useHttp(link, []);
 
-  return (
-    <div>
-      <img src={image} alt={name} />
-      <p>{name}</p>
-      <p>experience: {experience}</p>
-      <Stats stats={stats} id={id} />
-    </div>
-  );
+  const pokemonDetails = fetchedData
+    ? {
+        image: fetchedData.data.sprites.other.dream_world.front_default,
+        name: fetchedData.data.name,
+        experience: fetchedData.data.base_experience,
+        stats: fetchedData.data.stats,
+      }
+    : [];
+
+  if (isLoading && fetchedData) {
+    return (
+      <div>
+        <img src={pokemonDetails.image} alt={pokemonDetails.name} />
+        <p>{pokemonDetails.name}</p>
+        <p>experience: {pokemonDetails.experience}</p>
+        <Stats stats={pokemonDetails.stats} id={id} />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <p>Getting Pokemon..</p>
+      </div>
+    );
+  }
 };
 
 export default PokemonDetails;
