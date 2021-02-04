@@ -1,6 +1,7 @@
 import React from "react";
 import { useHttp } from "../hooks/Http";
 import { Link } from "react-router-dom";
+import Card from "../elements/Card";
 
 const PokemonListItem = (props) => {
   const [isLoading, fetchedData] = useHttp(props.pokemon.url, []);
@@ -14,12 +15,12 @@ const PokemonListItem = (props) => {
 
   if (isLoading && fetchedData) {
     return (
-      <li>
+      <Card>
         <Link to={`pokemon/${pokemon.id}`}>
-          <img src={pokemon.image} alt="poke" />
+          <img style={imgStyle} src={pokemon.image} alt="poke" />
           <p>{props.pokemon.name}</p>
         </Link>
-      </li>
+      </Card>
     );
   } else {
     return (
@@ -31,3 +32,8 @@ const PokemonListItem = (props) => {
 };
 
 export default PokemonListItem;
+
+const imgStyle = {
+  maxWidth: "300px",
+  height: "300px",
+};

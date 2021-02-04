@@ -14,28 +14,30 @@ const App = (props) => {
       <div className="App">
         <Navbar />
         <CardContainer>
-          <Card>
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <React.Fragment>
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <React.Fragment>
+                <Card>
                   <p>hell mami</p>
-                </React.Fragment>
-              )}
-            />
-
-            <Route
-              path="/types"
-              render={(props) => (
-                <React.Fragment>
+                </Card>
+              </React.Fragment>
+            )}
+          />
+          <Route
+            path="/types"
+            render={(props) => (
+              <React.Fragment>
+                <Card>
                   <ul style={listStyle}>
                     <TypeList />
                   </ul>
-                </React.Fragment>
-              )}
-            />
-          </Card>
+                </Card>
+              </React.Fragment>
+            )}
+          />
+
           <Route
             path="/pokemons"
             render={(props) => (
