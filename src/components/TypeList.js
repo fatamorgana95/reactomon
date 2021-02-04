@@ -1,18 +1,27 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import { useHttp } from "../hooks/Http";
 
-export class TypeList extends Component {
+const TypeList = (props) => {
+  const [isLoading, fetchedData] = useHttp(
+    "https://pokeapi.co/api/v2/type",
+    []
+  );
 
-    render() {
-        return (
-            this.props.types.map(type => (
-                <li key={type.url}>{type.name}</li>
-        )))
-    }
-}
+  const types = fetchedData
+    ? {
+        types: fetchedData.data.results,
+      }
+    : [];
 
-TypeList.propTypes = {
-    types: PropTypes.array.isRequired
-}
+  if (isLoading && fetchedData) {
+    return types.types.map((type) => <li key={type.url}>{type.name}</li>);
+  } else {
+    return (
+      <div>
+        <p>Getting types..</p>
+      </div>
+    );
+  }
+};
 
 export default TypeList;

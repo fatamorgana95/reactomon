@@ -1,44 +1,39 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Stats from './Stats'
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useHttp } from "../hooks/Http";
+import Stats from "./Stats";
 
-export class PokemonDetails extends Component {
-    state = {
-        picture: "",
-        name: "",
-        id: "",
-        baseExperience: 0,
-        stats: []
+const PokemonDetails = (props) => {
+  const { id } = useParams();
+  const link = `https://pokeapi.co/api/v2/pokemon/${id}/`;
 
-    }
+  const [isLoading, fetchedData] = useHttp(link, []);
 
-  componentDidMount() {
-    let path = window.location.pathname;
-    let id = path.split("/")[path.split("/").length - 1];
-    this.setState({id: id});
-    let link = `https://pokeapi.co/api/v2/pokemon/${id}/`;
+  const pokemonDetails = fetchedData
+    ? {
+        image: fetchedData.data.sprites.other.dream_world.front_default,
+        name: fetchedData.data.name,
+        experience: fetchedData.data.base_experience,
+        stats: fetchedData.data.stats,
+      }
+    : [];
 
-    axios.get(link)
-    .then(response => this.setState({
-        picture: response.data.sprites.other.dream_world.front_default,
-        name: response.data.name,
-        baseExperience: response.data.base_experience,
-        stats: response.data.stats
-      })
+  if (isLoading && fetchedData) {
+    return (
+      <div>
+        <img src={pokemonDetails.image} alt={pokemonDetails.name} />
+        <p>{pokemonDetails.name}</p>
+        <p>experience: {pokemonDetails.experience}</p>
+        <Stats stats={pokemonDetails.stats} id={id} />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <p>Getting Pokemon..</p>
+      </div>
     );
   }
-
-  render() {
-    return (
-    <div>
-        <img src={this.state.picture} alt=""/>
-        <p>{this.state.name}</p>
-        <p>experience: {this.state.baseExperience}</p>
-        <Stats stats={this.state.stats} id={this.state.id} />
-    </div>
-    
-    );
-}
-}
+};
 
 export default PokemonDetails;
