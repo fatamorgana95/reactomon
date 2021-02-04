@@ -5,45 +5,59 @@ import Navbar from "./components/layout/Navbar";
 import PokemonList from "./components/PokemonList";
 import TypeList from "./components/TypeList";
 import PokemonDetails from "./components/PokemonDetails";
+import CardContainer from "./elements/CardContainer";
+import Card from "./elements/Card";
+import UnorderedList from "./elements/UnorderedList";
+import BandImage from "./elements/BandImage";
 
 const App = (props) => {
   return (
     <Router>
       <div className="App">
         <Navbar />
-        <Route
-          exact
-          path="/"
-          render={(props) => (
-            <React.Fragment>
-              <p>hell mami</p>
-            </React.Fragment>
-          )}
-        />
-        <Route
-          path="/pokemons"
-          render={(props) => (
-            <React.Fragment>
-              <PokemonList />
-            </React.Fragment>
-          )}
-        />
-        <Route
-          path="/types"
-          render={(props) => (
-            <React.Fragment>
-              <TypeList />
-            </React.Fragment>
-          )}
-        />
-        <Route
-          path="/pokemon/:id"
-          render={(props) => (
-            <React.Fragment>
-              <PokemonDetails />
-            </React.Fragment>
-          )}
-        />
+        <CardContainer>
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <React.Fragment>
+                <BandImage
+                  alt="the-band"
+                  src="https://www.nicepng.com/png/full/183-1838504_we-baby-pokemon-gen-1.png"
+                />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            path="/types"
+            render={(props) => (
+              <React.Fragment>
+                <Card>
+                  <UnorderedList>
+                    <TypeList />
+                  </UnorderedList>
+                </Card>
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            path="/pokemons"
+            render={(props) => (
+              <React.Fragment>
+                <PokemonList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            path="/pokemon/:id"
+            render={(props) => (
+              <React.Fragment>
+                <PokemonDetails />
+              </React.Fragment>
+            )}
+          />
+        </CardContainer>
       </div>
     </Router>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import Marker from "../elements/Marker";
 import { useHttp } from "../hooks/Http";
 
 const TypeList = (props) => {
@@ -14,7 +15,15 @@ const TypeList = (props) => {
     : [];
 
   if (isLoading && fetchedData) {
-    return types.types.map((type) => <li key={type.url}>{type.name}</li>);
+    return types.types.map((type) => (
+      <li key={type.url}>
+        <Marker
+          src="http://pngimg.com/uploads/pokeball/pokeball_PNG27.png"
+          alt=""
+        />
+        {type.name}
+      </li>
+    ));
   } else {
     return (
       <div>
