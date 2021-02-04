@@ -1,15 +1,30 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useHttp } from "../hooks/Http";
 import PokemonListItem from "./PokemonListItem";
 
 const PokemonList = (props) => {
-  return props.pokemons.map((pokemon) => (
-    <PokemonListItem key={pokemon.url} pokemon={pokemon} />
-  ));
-};
+  const [isLoading, fetchedData] = useHttp(
+    "https://pokeapi.co/api/v2/pokemon?offset=0&limit=100",
+    []
+  );
 
-PokemonList.propTypes = {
-  pokemons: PropTypes.array.isRequired,
+  const pokemons = fetchedData
+    ? {
+        pokemons: fetchedData.data.results,
+      }
+    : [];
+
+  if (isLoading && fetchedData) {
+    return pokemons.pokemons.map((pokemon) => (
+      <PokemonListItem key={pokemon.url} pokemon={pokemon} />
+    ));
+  } else {
+    return (
+      <div>
+        <p>Getting Pokemons..</p>
+      </div>
+    );
+  }
 };
 
 export default PokemonList;
