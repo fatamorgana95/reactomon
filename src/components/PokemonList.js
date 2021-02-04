@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import PokemonListItem from './PokemonListItem';
+import React from "react";
+import PropTypes from "prop-types";
+import PokemonListItem from "./PokemonListItem";
 
-class PokemonList extends Component {
-
-    render() {
-        return (this.props.pokemons.map(pokemon => (
-        <PokemonListItem key={ pokemon.url } pokemon={ pokemon } />
-        )))
-    }
-}
+const PokemonList = (props) => {
+  return props.pokemons.map((pokemon) => (
+    <PokemonListItem key={pokemon.url} pokemon={pokemon} />
+  ));
+};
 
 PokemonList.propTypes = {
-    pokemons: PropTypes.array.isRequired
-}
+  pokemons: PropTypes.array.isRequired,
+};
 
-export default PokemonList;  
+export default PokemonList;
