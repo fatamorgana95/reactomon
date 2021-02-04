@@ -14,7 +14,6 @@ export const useHttp = (url, dependencies) => {
         console.log(response);
       })
       .catch((err) => {
-        alert("Something went wrong.");
         console.log(err);
         setIsLoading(false);
       });
