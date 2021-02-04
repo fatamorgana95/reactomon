@@ -1,23 +1,18 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-class PokemonListItem extends Component {
-  state = {
-    image: ""
-  }
+const PokemonListItem = (props) => {
+  
+  const [image, setImage] = useState("");
 
-
-  componentDidMount() {
+  useEffect(() => {
     axios
-        .get(this.props.pokemon.url)
-        .then(response => this.setState({ 
-            image : response.data.sprites.other.dream_world.front_default 
-        }))
-  }
+    .get(props.pokemon.url)
+    .then(response => setImage(response.data.sprites.other.dream_world.front_default));
+  }, [props.pokemon.url]);
 
-  render() {
-    let url = this.props.pokemon.url;
+    let url = props.pokemon.url;
     let splitted = url.split("/");
     let id = splitted[splitted.length - 2];
     let link = `/pokemon/${id}`;
@@ -25,12 +20,11 @@ class PokemonListItem extends Component {
     return (
       <li>
         <Link to={link}>
-          <img src={this.state.image} alt=""/>
-          <p>{this.props.pokemon.name}</p>
+          <img src={image} alt=""/>
+          <p>{props.pokemon.name}</p>
         </Link>
       </li>
     );
   }
-}
 
 export default PokemonListItem;
