@@ -10,4 +10,18 @@ export default styled.div`
   color: #051766;
   font-weight: bold;
   display: block;
+  &:hover {
+    background: orange;
+  }
+  & > img {
+    max-width: 300px;
+    height: 300px;
+  }
+  & > a > img {
+    max-width: 300px;
+    height: 300px;
+  }
+  & > a {
+    text-decoration: none;
+  }
 `;

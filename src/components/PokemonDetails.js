@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import Card from "../elements/Card";
 import { useHttp } from "../hooks/Http";
 import Stats from "./Stats";
 
@@ -20,12 +21,12 @@ const PokemonDetails = (props) => {
 
   if (isLoading && fetchedData) {
     return (
-      <div>
+      <Card>
         <img src={pokemonDetails.image} alt={pokemonDetails.name} />
         <p>{pokemonDetails.name}</p>
         <p>experience: {pokemonDetails.experience}</p>
         <Stats stats={pokemonDetails.stats} id={id} />
-      </div>
+      </Card>
     );
   } else {
     return (

@@ -7,6 +7,8 @@ import TypeList from "./components/TypeList";
 import PokemonDetails from "./components/PokemonDetails";
 import CardContainer from "./elements/CardContainer";
 import Card from "./elements/Card";
+import UnorderedList from "./elements/UnorderedList";
+import BandImage from "./elements/BandImage";
 
 const App = (props) => {
   return (
@@ -19,9 +21,10 @@ const App = (props) => {
             path="/"
             render={(props) => (
               <React.Fragment>
-                <Card>
-                  <p>hell mami</p>
-                </Card>
+                <BandImage
+                  alt="the-band"
+                  src="https://www.nicepng.com/png/full/183-1838504_we-baby-pokemon-gen-1.png"
+                />
               </React.Fragment>
             )}
           />
@@ -30,9 +33,9 @@ const App = (props) => {
             render={(props) => (
               <React.Fragment>
                 <Card>
-                  <ul style={listStyle}>
+                  <UnorderedList>
                     <TypeList />
-                  </ul>
+                  </UnorderedList>
                 </Card>
               </React.Fragment>
             )}
@@ -61,10 +64,3 @@ const App = (props) => {
 };
 
 export default App;
-
-const listStyle = {
-  listStyle: "none",
-  textAlign: "left",
-  paddingLeft: "30%",
-  fontSize: "large",
-};

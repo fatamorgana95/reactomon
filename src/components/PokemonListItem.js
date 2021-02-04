@@ -17,7 +17,7 @@ const PokemonListItem = (props) => {
     return (
       <Card>
         <Link to={`pokemon/${pokemon.id}`}>
-          <img style={imgStyle} src={pokemon.image} alt="poke" />
+          <img src={pokemon.image} alt="poke" />
           <p>{props.pokemon.name}</p>
         </Link>
       </Card>
@@ -32,8 +32,3 @@ const PokemonListItem = (props) => {
 };
 
 export default PokemonListItem;
-
-const imgStyle = {
-  maxWidth: "300px",
-  height: "300px",
-};

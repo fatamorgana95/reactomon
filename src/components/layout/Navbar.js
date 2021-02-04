@@ -5,11 +5,13 @@ function Navbar() {
   return (
     <header style={headerStyle}>
       <p>
-        <img
-          src="https://i.imgur.com/LWF7HIM.png"
-          style={imgStyle}
-          alt="pokemon-logo"
-        />
+        <Link to="/">
+          <img
+            src="https://i.imgur.com/LWF7HIM.png"
+            style={imgStyle}
+            alt="pokemon-logo"
+          />
+        </Link>
       </p>
       <Link style={linkStyle} to="/pokemons">
         Pokemons

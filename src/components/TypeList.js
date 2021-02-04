@@ -1,4 +1,5 @@
 import React from "react";
+import Marker from "../elements/Marker";
 import { useHttp } from "../hooks/Http";
 
 const TypeList = (props) => {
@@ -16,10 +17,9 @@ const TypeList = (props) => {
   if (isLoading && fetchedData) {
     return types.types.map((type) => (
       <li key={type.url}>
-        <img
+        <Marker
           src="http://pngimg.com/uploads/pokeball/pokeball_PNG27.png"
           alt=""
-          style={imgStyle}
         />
         {type.name}
       </li>
@@ -34,7 +34,3 @@ const TypeList = (props) => {
 };
 
 export default TypeList;
-
-const imgStyle = {
-  width: "15px",
-};
