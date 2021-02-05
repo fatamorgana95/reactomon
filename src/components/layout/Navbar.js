@@ -1,11 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import Link from "../../elements/Link";
+import Header from "../../elements/Header";
+import ToggleButton from "../../elements/ToggleButton";
+import { InverseThemeContext } from "../../contexts/InverseThemeContext";
 
 function Navbar() {
+  const [inverseTheme, setInverseTheme] = useContext(InverseThemeContext);
+
+  const switchTheme = () => {
+    setInverseTheme(!inverseTheme);
+  };
+
   return (
-    <header style={headerStyle}>
+    <Header inverseTheme={inverseTheme}>
       <p>
-        <Link to="/">
+        <Link to="/" style={noBackground}>
           <img
             src="https://i.imgur.com/LWF7HIM.png"
             style={imgStyle}
@@ -13,36 +22,25 @@ function Navbar() {
           />
         </Link>
       </p>
-      <Link style={linkStyle} to="/pokemons">
+      <Link inverseTheme={inverseTheme} to="/pokemons">
         Pokemons
       </Link>
-      <Link style={linkStyle} to="/types">
+      <Link inverseTheme={inverseTheme} to="/types">
         Types
       </Link>
-    </header>
+      <ToggleButton inverseTheme={inverseTheme} onClick={switchTheme}>
+        Theme switcher
+      </ToggleButton>
+    </Header>
   );
 }
 
 export default Navbar;
 
-const headerStyle = {
-  background: "#051766",
-  color: "#fff",
-  textAlign: "center",
-  padding: "30px",
-};
-
 const imgStyle = {
   padding: "30px",
 };
 
-const linkStyle = {
-  textDecoration: "none",
-  background: "#F9C132",
-  color: "#051766",
-  marginLeft: "110px",
-  marginRight: "110px",
-  padding: "10px",
-  borderRadius: "10%",
-  fontWeight: "bold",
+const noBackground = {
+  background: "none",
 };

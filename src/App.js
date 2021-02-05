@@ -9,11 +9,12 @@ import CardContainer from "./elements/CardContainer";
 import Card from "./elements/Card";
 import UnorderedList from "./elements/UnorderedList";
 import BandImage from "./elements/BandImage";
+import { InverseThemeProvider } from "./contexts/InverseThemeContext";
 
 const App = (props) => {
   return (
-    <Router>
-      <div className="App">
+    <InverseThemeProvider>
+      <Router>
         <Navbar />
         <CardContainer>
           <Route
@@ -58,8 +59,8 @@ const App = (props) => {
             )}
           />
         </CardContainer>
-      </div>
-    </Router>
+      </Router>
+    </InverseThemeProvider>
   );
 };
 

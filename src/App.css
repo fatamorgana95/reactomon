@@ -7,11 +7,7 @@
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
   line-height: 1.5;
-  background: yellow;
-  background-image: url("https://www.teahub.io/photos/full/95-955144_cartoon.jpg");
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-attachment: fixed;
+  background: darkblue;
 }
 
 a {

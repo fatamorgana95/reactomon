@@ -6,17 +6,19 @@ export const useHttp = (url, dependencies) => {
   const [fetchedData, setFetchedData] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get(url)
-      .then((response) => {
-        setFetchedData(response);
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false);
-      });
+    (async function mimic() {
+      setIsLoading(true);
+      await axios
+        .get(url)
+        .then((response) => {
+          setFetchedData(response);
+          console.log(response);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
+        });
+    })();
   }, dependencies);
 
   return [isLoading, fetchedData];
