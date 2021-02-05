@@ -7,9 +7,10 @@ export default styled.div`
   padding: 15px;
   border: 5px;
   border-radius: 10%;
-  color: #051766;
   font-weight: bold;
   display: block;
+  text-align: center;
+  color: #051766;
   &:hover {
     background: orange;
   }
@@ -23,5 +24,6 @@ export default styled.div`
   }
   & > a {
     text-decoration: none;
+    color: #051766;
   }
 `;

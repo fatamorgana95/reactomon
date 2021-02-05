@@ -4,7 +4,7 @@ import Card from "../elements/Card";
 import { useHttp } from "../hooks/Http";
 import Stats from "./Stats";
 
-const PokemonDetails = (props) => {
+const PokemonDetails = () => {
   const { id } = useParams();
   const link = `https://pokeapi.co/api/v2/pokemon/${id}/`;
 
